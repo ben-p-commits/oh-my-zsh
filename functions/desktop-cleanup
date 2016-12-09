@@ -16,7 +16,7 @@ echo "${Y}... Done!"
 
 echo "${G}Cleaning up misc cruft:${R}"
 
-for a in ~/Desktop/*.(|zip|dmg|pkg|tar*)(.N); do
+for a in ~/Desktop/*.(zip|dmg|pkg|tar*|pdf|json|xlsx|docx)(.N); do
 	rm -ri $a;
 ; done
 
