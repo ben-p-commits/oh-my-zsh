@@ -27,3 +27,5 @@ alias editzsh='subl ~/oh-my-zsh'
 #vim
 alias vim='/usr/local/bin/vim'
 alias v='vim'
+
+alias mux='tmuxinator'
