@@ -7,9 +7,9 @@ NC="\033[0m"
 
 
 # handy functions
-usage() { echo "Usage: ci_tag [-t <tf1|tf2|release>] [-m <release note>]" 1>&2;}
-error() { echo "${R}$1${NC}";}
-die() { kill -INT $$ }
+usage() { echo -e "Usage: ci_tag [-t <tf1|tf2|release>] [-m <release note>]" 1>&2;}
+error() { echo -e "${R}$1${NC}";}
+die() { kill -INT $$ ;}
 
 ask() {
     local prompt default REPLY
@@ -25,7 +25,7 @@ ask() {
             default=
         fi
         # Ask the question (not using "read -p" as it uses stderr not stdout)
-        echo -n "$1 [$prompt] "
+        echo -en "$1 [$prompt]:"
         # Read the answer (use /dev/tty in case stdin is redirected from somewhere else)
         read REPLY </dev/tty
         # Default?
@@ -77,12 +77,18 @@ pushcommand="git push --tags";
 branch="$(git symbolic-ref --short HEAD)";
 
 #warn the user of what they are about to do
-echo "\nCommit ${commit} on ${B}${branch}${NC} will be tagged ${G}${prefix}_${commit}${NC} for ${target}.\n";
+echo -e "\nCommit ${commit} on ${B}${branch}${NC} will be tagged ${G}${prefix}_${commit}${NC} for ${target}.\n";
 
 if ask "Proceed and push tags?" N; then
     echo;
-    echo "${G}Awesome! Here we go.${NC}";
+    echo -e "${G}Awesome! Here we go.${NC}";
     eval $tagcommand && eval $pushcommand;
+    if ! type "$toilet" > /dev/null; then
+         echo -e "Done! :)" | toilet --gay -f mono12
+        else
+         echo -e "${G}Done!${NC} :)" | toilet --gay -f mono12
+    fi
+   
 else
     error "\nNevermind!" && die;
 fi
