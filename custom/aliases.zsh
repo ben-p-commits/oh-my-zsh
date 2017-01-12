@@ -29,3 +29,10 @@ alias vim='/usr/local/bin/vim'
 alias v='vim'
 
 alias mux='tmuxinator'
+
+#jekyll
+alias j='jekyll'
+alias jb='jekyll build'
+alias jbw='jekyll build --watch'
+alias jsd='jekyll serve --detach'
+alias js='jekyll serve'
