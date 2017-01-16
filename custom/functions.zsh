@@ -20,3 +20,4 @@ autoload -Uz ci_tag
 autoload -Uz ask
 autoload -Uz desktop-cleanup
 autoload -Uz rmd
+autoload -Uz deployblog
